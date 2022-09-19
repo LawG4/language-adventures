@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
-project(asm-x86-adventures C ASM)
+project(asm-adventures C ASM)
 
 # Each different platform might have a different instruction set to target string
 if(WIN32)
@@ -15,8 +15,16 @@ set(EXAMPLE_LIST
 
 # Add the examples into a project
 foreach(example ${EXAMPLE_LIST})
-	message(STATUS "    Adding example : ${example}")
+
+	# Find the name of the example without the number 
+	string(REPLACE "-" ";" split_name "${example}")
+	list(REMOVE_AT split_name 0)
+	string(REPLACE ";" "-" name "${split_name}")
+	message(STATUS "    Adding example : ${name}")
+
+	# Find all of the sources and add the executable
+	# We don't need to do anything special
 	file(GLOB sources_list "${CMAKE_CURRENT_LIST_DIR}/${example}/*.asm")
-	add_executable(${example} ${sources_list})
+	add_executable(asm_${name} ${sources_list})
 	
 endforeach()
