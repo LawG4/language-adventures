@@ -7,7 +7,8 @@ endif()
 # Add all the languages which can be built with cmake you can avoid adding it by 
 # Defining NOT_ADVENTURE_${language} on the command line with -D 
 set(LANGUAGE_LIST 
-	asm)
+	asm
+	jakt)
 
 foreach(language ${LANGUAGE_LIST})
 
